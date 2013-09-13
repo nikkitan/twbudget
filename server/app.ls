@@ -6,6 +6,7 @@ port = Number(argv?port or json?PORT_NODEJS or process.env.PORT or process.env.V
 host = argv?host or process.env.VCAP_APP_HOST or \0.0.0.0
 basepath = (argv?basepath or "") - /\/$/
 
+console.log \2Main!
 console.log "Please connect to: http://#{
     if host is \0.0.0.0 then require \os .hostname! else host
 }:#port/"
@@ -18,6 +19,5 @@ console.log "Please connect to: http://#{
 @config = json ? {}
 @config.cookieSecret ?= 'its-secret'
 @config.authproviders ?= {}
-
 @include \main
 

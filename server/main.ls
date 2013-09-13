@@ -1,6 +1,7 @@
 {Product,BudgetItem} = require \../lib/schema
 
 @include = ->
+    console.log 'main!'
     @passport = require \passport
     CookieStore = require \cookie-sessions
     @use @express.static __dirname + \/../_public
@@ -31,25 +32,31 @@
         err, res <~ Product.find!
         .exec
         results = for i in [1 to 10]
-            name: \ONE, categoryKey: \htc:one, products: res
+         name: \ONE, categoryKey: \htc:one, products: res
+        console.log \GET!
         @response.send results
 
     @get '/1/profile': ->
+        console.log '/1/profile'
         <~ @ensureAuthenticated
         @response.send @request.user
 
     @get '/1/budgetitems': ->
+        #console.log '/1/budgetitems'
         err, item <~ BudgetItem.find {}, 'key nhates nconfuses nlikes ncuts'
         .exec
+        console.log "#{(new Date).getTime!}:"+item
         @response.send item
 
     @get '/1/budgetitems/:key': ->
+        #console.log '/1/budgetitems/:key'
         err, item <~ BudgetItem.findOne {key: @params.key}, 'key nhates nconfuses nlikes ncuts tags'
         .exec
-        console.log @params.key, item
+        console.log "#{(new Date).getTime!}:"+item
         @response.send item
 
     @post '/1/budgetitems/:key/tags/:tag': ->
+        console.log 'post/1/budgetitems/:key/tags/:tag'
         key = @params.key
         tag = @params.tag
 
@@ -67,6 +74,7 @@
         return done(err, null) if err
         done(null, item)
     @post '/1/budgetitems/:key/:what': ->
+        console.log 'post:/1/budgetitems/:key/:what'
         key = @params.key
         done = (err, item) ~>
             console.log item
@@ -96,7 +104,7 @@
     @csv2012 = null
     @loadCsv \app/assets/data/tw2012ap.csv, (hash) ~> 
       @csv2012 = hash
-    getOpenGraph = (code) ~> @getOpenGraph @csv2012,code
+    @getOpenGraph = (code) ~> @getOpenGraph @csv2012,code
     @get '/:what': sendFile \index.html
     @get '/budget/:code': ->
         code = (@request.path.match /\/budget\/(\S+)/)[1]

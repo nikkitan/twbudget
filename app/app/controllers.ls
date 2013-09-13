@@ -76,6 +76,7 @@ mod.MyCtrl1 = <[ $scope ProductSearch ]> ++ ($scope, productSearch) ->
   $scope.results <- productSearch.search("htc")
 
 mod.BudgetItem = <[ $scope $state BudgetItem ]> ++ ($scope, $state, BudgetItem) ->
+    console.log 'BudgetItem Controller!'
     $scope.$watch '$state.params.code' (code) ->
       $scope.code = code
 

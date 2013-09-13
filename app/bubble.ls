@@ -323,6 +323,9 @@ class BubbleChart
     $('#bubble-detail-amount-change').text(change data.change)
     $('#bubble-detail-amount-alt').text UnitMapper.convert data.value,-1,true
     $('#bubble-detail-link').attr \href, 'http://budget.g0v.tw/budget/'+data.data.code
+    #$('#bubble-detail-link').attr \href, 'http://www.google.com'
+    console.log 'SHOW_DEtail:'+data.data.code
+    #$('#bubble-detail-link').text 'http://www.google.com'
     $('#bubble-detail-link').text 'http://budget.g0v.tw/budget/'+data.data.code
     @tooltip.showTooltip content, d3.event if @mode!='default'
     @do_show_details data,(if element then @mode else 'default') if @do_show_details
