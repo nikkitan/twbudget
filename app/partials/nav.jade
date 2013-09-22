@@ -37,7 +37,8 @@ ul.nav
       .modal-footer
         button.btn(data-dismiss="modal",aria-hidden="true") 取消
         button.btn.btn-primary(ng-click="addunit()") 送出
-
+  li(ng-class="getClass('/aboutus')")
+    a(ng-href='/aboutus') ABOUT US
 ul.nav.pull-right
   li(ng-class="getClass('/profile')")
     a(ng-href='/profile') 我的帳號

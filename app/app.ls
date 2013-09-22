@@ -23,6 +23,9 @@ angular.module \app, <[ partials ngResource app.controllers app.directives app.f
     .state 'profile' do
       url: '/profile'
       templateUrl: '/partials/profile.html'
+    .state 'aboutus' do
+      url: '/aboutus'
+      templateUrl: '/partials/aboutus.html'
 
   $urlRouterProvider
     .otherwise('/budget')
