@@ -30,6 +30,7 @@ class BubbleChart
         x: Math.random! * 900
         y: Math.random! * 800
   create_vis: ->
+    console.log 'Create_Vis!'
     @vis = d3.select(\#bubble-chart)append \svg
       .attr \width @width
       .attr \height @height
@@ -110,7 +111,7 @@ class BubbleChart
       .on \click (d,i) ~>
         @locking d,i
         @force.start!
-    @code = angular.element \#BudgetItem .scope! .code
+    @code = angular.element \#BudgetItem .scope! .code if (angular.element \#BudgetItem)? && (angular.element \#BudgetItem .scope!)?;
 
     @depict = @vis.append \g
           .style \opacity 0.0

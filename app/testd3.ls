@@ -102,6 +102,38 @@ test_bubble = ->
   $('.btn.bytop')click -> chart.display_by_attr \topname
   $('.btn.default')click -> chart.display_group_all!
 
+#Nikkki's func for annual revenue.
+arMapforyear = (year, cb) ->
+    json <- d3.csv "/data/tw#{year}ar.csv"
+    cb {[code, entry] for {code}:entry in json}
+
+arDataOverYears = (y2013, y2014) ->
+    for code, entry of y2014
+        entry.byYear = { 2014: +entry.amount, 2013: +y2013[code]?amount }
+        entry.change = (entry.byYear.2014 - entry.byYear.2013) / entry.byYear.2013 if entry.byYear.2013
+        entry.amount = 0 if entry.amount is \NaN
+        entry
+
+choose_apar_bubble = ->
+
+  chart = null
+
+  render_vis = (data) ->
+    chart := new BubbleChart {data}
+      ..do_show_details = (data, mode) ->
+        bar_chart data.id, mode
+      ..start!
+      ..display_group_all!
+
+  y2013 <- arMapforyear 2013
+  y2014 <- arMapforyear 2014
+  data = dataOverYears y2013, y2014
+  data .= sort (a, b) -> b.amount - a.amount
+  #data .= slice 0, 600
+  render_vis data
+  $('.btn.ap')click -> chart.display_by_attr \cat
+  $('.btn.ar')click -> chart.display_by_attr \topname
+
 testd3 = ->
     cell = ->
         @style \left -> it.x + \px

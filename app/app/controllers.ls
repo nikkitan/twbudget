@@ -6,8 +6,8 @@ mod.AppCtrl = [
   '$location'
   '$resource'
   '$rootScope'
-
 (s, $location, $resource, $rootScope) ->
+  console.log \AppCtrl!
 
   # Uses the url to determine if the selected
   # menu item should have the class active.
@@ -76,7 +76,9 @@ mod.MyCtrl1 = <[ $scope ProductSearch ]> ++ ($scope, productSearch) ->
   $scope.results <- productSearch.search("htc")
 
 mod.BudgetItem = <[ $scope $state BudgetItem ]> ++ ($scope, $state, BudgetItem) ->
+    console.log 'BudgetItem_Controller!'
     $scope.$watch '$state.params.code' (code) ->
+      console.log 'Setting code:' + code
       $scope.code = code
 
     update_from_item = (res) ->
