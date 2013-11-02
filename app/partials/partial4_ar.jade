@@ -1,0 +1,49 @@
+.treemap-root
+  .btn-group(data-toggle="buttons-radio")
+    a.btn.default.active Default
+    a.btn.bycat 政事別
+    a.btn.bytop 主管單位
+  #bubble-circle-size.btn 圖例
+  #bubble-info
+    #bubble-info-inner
+      i#bubble-info-close.icon-big-close(style="margin-top:-5px")
+      #bubble-info-left
+        #bubble-detail-info
+          #bubble-detail-names
+            i.icon-big-info-sign(style="margin-top:-9px")
+            span#bubble-detail-name ???
+            |(
+            span#bubble-detail-depname ???
+            )
+          #bubble-detail-amount
+            span#bubble-detail-amount-value ???
+            span#bubble-detail-amount-quantifier
+            span#bubble-detail-amount-unit 元
+            |(
+            span#bubble-detail-amount-change ???
+            |&nbsp;)
+            br
+            |( 即為
+            span#bubble-detail-amount-alt ???
+            |&nbsp;)
+            br
+            #bubble-detail-amount-link
+              span 連結到此項 :
+              a#bubble-detail-link(href="view4") http://g0v.tw/view4
+        hr
+        #bubble-detail-change-bar
+        hr
+        include tags
+        hr
+        include vote
+      #bubble-info-right
+  #bubble-chart
+  script
+    test_bubble_ar();
+  svg
+    g
+      defs
+        radialGradient(id="MyGradient",gradientUnits="userSpaceOnUse",cx="500",cy="350",r="500",fx="400",fy="200")
+         stop(offset="0%",stop-color="red")
+         stop(offset="50%",stop-color="blue")
+         stop(offset="100%",stop-color="red")

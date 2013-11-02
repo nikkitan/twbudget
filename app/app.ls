@@ -15,10 +15,14 @@ angular.module \app, <[ partials ngResource app.controllers app.directives app.f
     .state 'choose_apar' do
       url: '/choose_apar'
       templateUrl: '/partials/choose_apar.html'
-      controller:['$scope','$stateProvider',($scope,$stateProvider)->console.log \Embed! $stateProvider.state('/debtclock') ]
+      #controller:['$scope','$stateProvider',($scope,$stateProvider)->console.log \Embed! $stateProvider.state('/debtclock') ]
     .state 'budget' do
       url: '/budget'
       templateUrl: '/partials/partial4.html'
+      controller: \BudgetItem
+    .state 'budget_ar' do
+      url: '/budget_ar'
+      templateUrl: '/partials/partial4_ar.html'
       controller: \BudgetItem
     .state 'budget.detail' do
       url: '/{code}'
